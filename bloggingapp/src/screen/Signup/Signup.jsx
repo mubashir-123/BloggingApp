@@ -24,9 +24,11 @@ const Signup = () => {
     console.log(email.current.value);
     console.log(password.current.value);
     console.log(confirm_password.current.value);
-   console.log('---------------------------------')
+    console.log('---------------------------------')
 
-    createUserWithEmailAndPassword(auth,first_name.current.value,last_name.current.value, email.current.value, password.current.value,confirm_password.current.value)
+
+   // first_name.current.value,last_name.current.value,,confirm_password.current.value
+    createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
@@ -41,12 +43,17 @@ const Signup = () => {
   });
 
   }
+
+  const login = ()=>{
+    navigate('/SignIn');
+  }
+
   return (
     <>
 
     <h1 className='text-center mt-10 text-gray-600 text-3xl'><b>Sign Up</b></h1> 
 
-    <form onSubmit={SignupHandler}  className='flex flex-col flex-wrap items-center gap-3 py-5'>
+    <form onSubmit={SignupHandler}  className='flex flex-col flex-wrap items-center gap-3 py-5 pb-[2.5%]'>
 
       <label className="input input-bordered flex items-center gap-2 w-72">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" /></svg>
@@ -73,7 +80,9 @@ const Signup = () => {
         <input type="password" className="grow" placeholder='Confirm Password' minLength={8} required ref={confirm_password}/>
       </label>
 
-      <button type='submit' className="btn btn-neutral w-72 text-xl flex items-center">Submit</button>
+      <button type='submit' className="btn btn-neutral w-72 text-xl flex items-center">Sign Up</button>
+
+      <p className='text-center text-sm mt-2'>Registered already?<span className='cursor-pointer text-center text-sm ml-28' onClick={login}><u>SignIn</u></span></p>
     </form>  
     </>
   )
